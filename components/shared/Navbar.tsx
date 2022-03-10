@@ -38,8 +38,10 @@ export default function NavBar() {
     <NavStyle>
       <ul>
         <li>
-          <Link href="/price" passHref>
-            <Image src="/price-dark.svg" alt="logo" width={100} height={40} />
+          <Link href="/price" passHref={true}>
+            <div>
+              <Image src="/price-dark.svg" alt="logo" width={100} height={40} />
+            </div>
           </Link>
         </li>
       </ul>

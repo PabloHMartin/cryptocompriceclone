@@ -33,21 +33,13 @@ export default function PricePage() {
       <GlobalMetrics />
       <Coinfilterbar />
       {topMovers && <TopMovers topMovers={topMovers} />}
-      <AssetTable />
-      <div>
-        <button
-          onClick={() => setpageNumber((page) => page - 1)}
-          disabled={pageNumber === 1}
-        >
-          Prev
-        </button>
-        <button
-          onClick={() => setpageNumber((page) => page + 1)}
-          disabled={pageNumber === 50}
-        >
-          Next
-        </button>
-      </div>
+      {tableData && (
+        <AssetTable
+          data={tableData}
+          pageNumber={pageNumber}
+          setpageNumber={setpageNumber}
+        />
+      )}
     </>
   );
 }

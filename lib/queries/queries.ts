@@ -26,3 +26,10 @@ export const fetchSlug = async (
   const res = await httpClient.get(`v1/exchange/${slug}`);
   return res.data;
 };
+
+export const fetchSlugPrices = async (
+  slug: string | string[] | undefined
+): Promise<Slug> => {
+  const res = await httpClient.get(`v2/d/${slug}`);
+  return res.data;
+};

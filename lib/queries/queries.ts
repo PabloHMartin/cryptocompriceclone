@@ -1,5 +1,6 @@
 import httpClient from "../../components/shared/http-client";
 import { Slug } from "../models/Slug-backend";
+import { SlugPrices } from "../models/Slug-prices";
 import { TableAssets } from "../models/Table-asset";
 import { TopMover } from "../models/Top-mover";
 
@@ -29,7 +30,7 @@ export const fetchSlug = async (
 
 export const fetchSlugPrices = async (
   slug: string | string[] | undefined
-): Promise<Slug> => {
+): Promise<SlugPrices> => {
   const res = await httpClient.get(`v2/d/${slug}`);
   return res.data;
 };

@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import { useQuery } from "react-query";
 import GlobalMetrics from "../../components/shared/GlobalMetrics";
 import NavBar from "../../components/shared/Navbar";
+import Chart from "../../components/slug-details-components/Chart";
 import { fetchSlug, fetchSlugPrices } from "../../lib/queries/queries";
 
 export default function Slug() {
@@ -22,6 +23,7 @@ export default function Slug() {
       <NavBar />
       <GlobalMetrics />
       {slugInfo?.slug}
+      {slugPrices && <Chart data={slugPrices} />}
     </>
   );
 }

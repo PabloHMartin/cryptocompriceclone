@@ -2,6 +2,7 @@ import httpClient from "../../components/shared/http-client";
 import { Slug } from "../models/Slug-backend";
 import { SlugPrices } from "../models/Slug-prices";
 import { TableAssets } from "../models/Table-asset";
+import { TokenInfo } from "../models/Token-info";
 import { TopMover } from "../models/Top-mover";
 
 export const fetchGlobalMetrics = async () => {
@@ -32,5 +33,13 @@ export const fetchSlugPrices = async (
   slug: string | string[] | undefined
 ): Promise<SlugPrices> => {
   const res = await httpClient.get(`v2/d/${slug}`);
+  return res.data;
+};
+
+export const fetchTokenInfo = async (
+  slug: string | string[] | undefined
+): Promise<TokenInfo> => {
+  const res = await httpClient.get(`v1/tokens/${slug}`);
+  console.log("fetchTokenInfo ", res.data);
   return res.data;
 };

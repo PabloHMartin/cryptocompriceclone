@@ -6,7 +6,7 @@ import styled from "@emotion/styled";
 
 const ChartContainerStyled = styled.div`
   background-color: #fff;
-  margin: 1rem 0.5rem;
+  margin: 1rem 0rem;
   padding: 1rem;
   padding-bottom: 0;
 `;

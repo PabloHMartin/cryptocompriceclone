@@ -2,7 +2,6 @@ import { useRouter } from "next/router";
 import { useQuery } from "react-query";
 import GlobalMetrics from "../../components/shared/GlobalMetrics";
 import NavBar from "../../components/shared/Navbar";
-import Chart from "../../components/slug-details-components/Chart";
 import ChartContainer from "../../components/slug-details-components/Chart-container";
 import {
   fetchSlug,
@@ -14,12 +13,13 @@ import { Breadcrumbs, Link, Typography } from "@mui/material";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import StarOutlineIcon from "@mui/icons-material/StarOutline";
 import Image from "next/image";
+import Footer from "../../components/shared/Footer";
 
-const PageWrapper = styled.div`
+const MainWrapper = styled.main`
+  padding: 1rem 0.5rem 4rem 0.5rem;
   background-color: #f5f6f9;
-  padding: 1rem;
-  padding-top: 1.8rem;
 `;
+
 const BreadcrumbWrapper = styled.div`
   margin-bottom: 0.5rem;
 `;
@@ -102,7 +102,7 @@ export default function Slug() {
     <>
       <NavBar />
       <GlobalMetrics />
-      <PageWrapper>
+      <MainWrapper>
         <BreadcrumbWrapper>
           <Breadcrumbs
             separator={<NavigateNextIcon fontSize="small" />}
@@ -136,7 +136,8 @@ export default function Slug() {
         {slugPrices && TokenInfo && (
           <ChartContainer data={slugPrices} tokenInfo={TokenInfo} />
         )}
-      </PageWrapper>
+      </MainWrapper>
+      <Footer />
     </>
   );
 }

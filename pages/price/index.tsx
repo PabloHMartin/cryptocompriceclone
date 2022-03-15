@@ -12,7 +12,7 @@ import { fetchTableAssets, fetchTopMovers } from "../../lib/queries/queries";
 import styled from "@emotion/styled";
 
 const MainWrapper = styled.main`
-  padding: 1rem 0rem 4rem;
+  padding: 1rem 0rem 2rem;
   background-color: #f5f6f9;
 `;
 

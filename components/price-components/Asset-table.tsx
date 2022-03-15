@@ -1,5 +1,6 @@
 import {
   Link,
+  Pagination,
   Paper,
   Table,
   TableBody,
@@ -9,14 +10,24 @@ import {
   TableRow,
   TableSortLabel,
 } from "@mui/material";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
+import styled from "styled-components";
 import { TableAssets } from "../../lib/models/Table-asset";
+
+const PaginationWrapper = styled.div`
+  padding-top: 2rem;
+  display: flex;
+  justify-content: center;
+`;
 
 export default function AssetTable(props: {
   data: TableAssets;
   pageNumber: number;
   setpageNumber: Dispatch<SetStateAction<number>>;
 }) {
+  const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
+    props.setpageNumber(value);
+  };
   const headCells = [{ label: " " }, { label: "NAME" }, { label: "PRICE" }];
 
   return (
@@ -46,20 +57,14 @@ export default function AssetTable(props: {
           </TableBody>
         </Table>
       </TableContainer>
-      <div>
-        <button
-          onClick={() => props.setpageNumber(props.pageNumber - 1)}
-          disabled={props.pageNumber === 1}
-        >
-          Prev
-        </button>
-        <button
-          onClick={() => props.setpageNumber(props.pageNumber + 1)}
-          disabled={props.pageNumber === 50}
-        >
-          Next
-        </button>
-      </div>
+      <PaginationWrapper>
+        <Pagination
+          color="primary"
+          onChange={handleChange}
+          count={Math.round(props.data.total / 50)}
+          shape="rounded"
+        />
+      </PaginationWrapper>
     </>
   );
 }

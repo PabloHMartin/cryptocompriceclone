@@ -41,6 +41,7 @@ export interface Datum {
   explorer_urls?: any;
   rss_feeds?: any;
   page_title?: any;
+  icon?: string;
 }
 
 export interface TableAssets {

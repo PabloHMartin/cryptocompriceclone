@@ -5,4 +5,5 @@ export interface TopMover {
   usd_price: number;
   usd_price_change_24h: number;
   prices: number[];
+  icon?: string;
 }

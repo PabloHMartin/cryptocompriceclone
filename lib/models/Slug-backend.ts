@@ -22,4 +22,5 @@ export interface Slug {
   fiat: Fiat;
   crypto: Crypto;
   update_time: number;
+  icon?: string;
 }

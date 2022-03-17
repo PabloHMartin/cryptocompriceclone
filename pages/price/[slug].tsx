@@ -4,6 +4,7 @@ import GlobalMetrics from "../../components/shared/GlobalMetrics";
 import NavBar from "../../components/shared/Navbar";
 import ChartContainer from "../../components/slug-details-components/Chart-container";
 import {
+  fetchIcons,
   fetchSlug,
   fetchSlugPrices,
   fetchTokenInfo,
@@ -18,6 +19,9 @@ import Footer from "../../components/shared/Footer";
 const MainWrapper = styled.main`
   padding: 1rem 0.5rem 4rem 0.5rem;
   background-color: #f5f6f9;
+  font-family: BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, Helvetica, Arial,
+    sans-serif;
 `;
 
 const BreadcrumbWrapper = styled.div`
@@ -25,8 +29,9 @@ const BreadcrumbWrapper = styled.div`
 `;
 const BreadcrumbStyle = styled.span`
   text-transform: capitalize;
-  font-size: 16px;
+  font-size: 14px;
   color: "#C9CFDD";
+  cursor: pointer;
 `;
 const AssetTitleWrapper = styled.div`
   text-transform: capitalize;
@@ -36,7 +41,7 @@ const AssetTitleWrapper = styled.div`
 const AssetTitle = styled.div`
   text-transform: capitalize;
   display: flex;
-  align-items: baseline;
+  align-items: center;
   margin: 0.5rem 0;
 `;
 const AssetTitleIcon = styled.div`
@@ -44,7 +49,7 @@ const AssetTitleIcon = styled.div`
 `;
 const AssetTitleSlug = styled.div`
   font-size: 20px;
-  font-weight: bold;
+  font-weight: 600;
   margin-right: 8px;
 `;
 const AssetTitleSymbol = styled.div`
@@ -69,19 +74,46 @@ export default function Slug() {
   const router = useRouter();
   const { slug } = router.query;
 
-  const { data: slugInfo } = useQuery(["getSlug", slug], () => fetchSlug(slug));
+  const { data: icons } = useQuery("icons", fetchIcons, {
+    staleTime: 10000000,
+    refetchOnWindowFocus: false,
+    keepPreviousData: true,
+    select: (data) => {
+      return new Map<string, string>(
+        data.map(
+          (icon: { asset_id: string; url: string }) =>
+            [icon.asset_id, icon.url] as [string, string]
+        )
+      );
+    },
+  });
+
+  const { data: slugInfo } = useQuery(
+    ["getSlug", slug],
+    () => fetchSlug(slug),
+    {
+      refetchInterval: 8000,
+      enabled: !!icons && !!slug,
+      select: (data) => {
+        if (icons) {
+          data.icon = icons.get(data.symbol);
+        }
+        return data;
+      },
+    }
+  );
   const {
     data: slugPrices,
     isLoading,
     isError,
-  } = useQuery(["getSlugPrices", slug], () => fetchSlugPrices(slug));
+  } = useQuery(["getSlugPrices", slug], () => fetchSlugPrices(slug), {
+    refetchInterval: 8000,
+    enabled: !!icons && !!slug,
+  });
 
   const { data: TokenInfo } = useQuery(["getTokenInfo", slug], () =>
     fetchTokenInfo(slug)
   );
-
-  console.log(slugInfo);
-  console.log("slugPrices", slugPrices);
 
   const breadcrumbs = [
     <Link
@@ -115,12 +147,21 @@ export default function Slug() {
         <AssetTitleWrapper>
           <AssetTitle>
             <AssetTitleIcon>
-              <Image
-                src="/color_icon.png"
-                alt="asset logo"
-                width={26}
-                height={26}
-              />
+              {slugInfo?.icon ? (
+                <Image
+                  src={slugInfo.icon}
+                  alt="asset logo"
+                  width={32}
+                  height={32}
+                />
+              ) : (
+                <Image
+                  src="/color_icon.png"
+                  alt="asset logo"
+                  width={32}
+                  height={32}
+                />
+              )}
             </AssetTitleIcon>
             <AssetTitleSlug>{slugInfo?.slug}</AssetTitleSlug>
             <AssetTitleSymbol>{slugInfo?.symbol}</AssetTitleSymbol>

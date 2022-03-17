@@ -1,9 +1,12 @@
+import axios from "axios";
 import httpClient from "../../components/shared/http-client";
 import { Slug } from "../models/Slug-backend";
 import { SlugPrices } from "../models/Slug-prices";
 import { TableAssets } from "../models/Table-asset";
 import { TokenInfo } from "../models/Token-info";
 import { TopMover } from "../models/Top-mover";
+
+const coinapi = process.env.NEXT_PUBLIC_COINAPI ?? "";
 
 export const fetchGlobalMetrics = async () => {
   const res = await httpClient.get("/v1/global-metrics");
@@ -40,6 +43,14 @@ export const fetchTokenInfo = async (
   slug: string | string[] | undefined
 ): Promise<TokenInfo> => {
   const res = await httpClient.get(`v1/tokens/${slug}`);
-  console.log("fetchTokenInfo ", res.data);
+  return res.data;
+};
+
+export const fetchIcons = async () => {
+  const res = await axios.get("http://rest.coinapi.io/v1/assets/icons/24", {
+    headers: {
+      "X-CoinAPI-Key": coinapi,
+    },
+  });
   return res.data;
 };

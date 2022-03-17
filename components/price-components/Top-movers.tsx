@@ -100,15 +100,20 @@ const CardBottom = styled.div`
 
 const CardOption = ({ mover }: { mover: TopMover }) => {
   return (
-    <Card sx={{ minWidth: 150 }}>
+    <Card sx={{ minWidth: 150 }} elevation={0}>
       <CardContentStyled>
         <CardTop>
-          <Image
-            src="/color_icon.png"
-            alt="asset logo"
-            width={24}
-            height={24}
-          />
+          {mover.icon ? (
+            <Image src={mover.icon} alt="asset logo" width={24} height={24} />
+          ) : (
+            <Image
+              src="/color_icon.png"
+              alt="asset logo"
+              width={24}
+              height={24}
+            />
+          )}
+
           <CardAssetRateDiff>10.85%</CardAssetRateDiff>
         </CardTop>
         <CardBottom>

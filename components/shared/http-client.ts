@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = "https://price-api.crypto.com/price";
+const baseURL = process.env.NEXT_PUBLIC_CRYPTO_PRICE_BASE_URL;
 
 const httpClient = axios.create({
   baseURL,

@@ -47,9 +47,9 @@ export const fetchTokenInfo = async (
 };
 
 export const fetchIcons = async () => {
-  const res = await axios.get("http://rest.coinapi.io/v1/assets/icons/24", {
+  const res = await axios.get("https://rest.coinapi.io/v1/assets/icons/24", {
     headers: {
-      "X-CoinAPI-Key": coinapi ?? "2CEAC46C-67B8-4C9A-BB39-627F2D786806",
+      "X-CoinAPI-Key": `${coinapi}`,
     },
   });
   return res.data;

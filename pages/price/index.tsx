@@ -14,6 +14,7 @@ import {
   fetchTopMovers,
 } from "../../lib/queries/queries";
 import styled from "@emotion/styled";
+import Head from "next/head";
 
 const MainWrapper = styled.main`
   padding: 1rem 0rem 2rem;
@@ -76,6 +77,12 @@ export default function PricePage() {
 
   return (
     <>
+      <Head>
+        <meta
+          httpEquiv="Content-Security-Policy"
+          content="upgrade-insecure-requests"
+        />
+      </Head>
       <NavBar />
       <GlobalMetrics />
       {/* <Coinfilterbar /> */}

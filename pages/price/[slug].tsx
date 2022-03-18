@@ -15,6 +15,7 @@ import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import StarOutlineIcon from "@mui/icons-material/StarOutline";
 import Image from "next/image";
 import Footer from "../../components/shared/Footer";
+import Head from "next/head";
 
 const MainWrapper = styled.main`
   padding: 1rem 0.5rem 4rem 0.5rem;
@@ -132,6 +133,12 @@ export default function Slug() {
 
   return (
     <>
+      <Head>
+        <meta
+          httpEquiv="Content-Security-Policy"
+          content="upgrade-insecure-requests"
+        />
+      </Head>
       <NavBar />
       <GlobalMetrics />
       <MainWrapper>

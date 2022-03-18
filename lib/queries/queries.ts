@@ -6,7 +6,7 @@ import { TableAssets } from "../models/Table-asset";
 import { TokenInfo } from "../models/Token-info";
 import { TopMover } from "../models/Top-mover";
 
-const coinapi = process.env.NEXT_PUBLIC_COINAPI ?? "";
+const coinapi = process.env.NEXT_PUBLIC_COINAPI;
 
 export const fetchGlobalMetrics = async () => {
   const res = await httpClient.get("/v1/global-metrics");
@@ -49,7 +49,7 @@ export const fetchTokenInfo = async (
 export const fetchIcons = async () => {
   const res = await axios.get("http://rest.coinapi.io/v1/assets/icons/24", {
     headers: {
-      "X-CoinAPI-Key": coinapi,
+      "X-CoinAPI-Key": coinapi ?? "2CEAC46C-67B8-4C9A-BB39-627F2D786806",
     },
   });
   return res.data;

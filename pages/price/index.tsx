@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import { QueryClient, QueryClientProvider, useQuery } from "react-query";
+import { useQuery } from "react-query";
 import AssetTable from "../../components/price-components/Asset-table";
-import Coinfilterbar from "../../components/price-components/Coinfilterbar";
 import TopMovers from "../../components/price-components/Top-movers";
 import Footer from "../../components/shared/Footer";
 import GlobalMetrics from "../../components/shared/GlobalMetrics";
@@ -14,11 +13,15 @@ import {
   fetchTopMovers,
 } from "../../lib/queries/queries";
 import styled from "@emotion/styled";
-import Head from "next/head";
+import LoadingScreen from "../../components/shared/Loading-screen";
 
 const MainWrapper = styled.main`
   padding: 1rem 0rem 2rem;
   background-color: #f5f6f9;
+`;
+const LoadingScreenWrapper = styled.main`
+  height: 80vh;
+  text-align: center;
 `;
 
 export default function PricePage() {
@@ -77,25 +80,29 @@ export default function PricePage() {
 
   return (
     <>
-      <Head>
-        <meta
-          httpEquiv="Content-Security-Policy"
-          content="upgrade-insecure-requests"
-        />
-      </Head>
       <NavBar />
-      <GlobalMetrics />
       {/* <Coinfilterbar /> */}
-      <MainWrapper>
-        {topMovers && <TopMovers topMovers={topMovers} />}
-        {tableData && (
-          <AssetTable
-            data={tableData}
-            pageNumber={pageNumber}
-            setpageNumber={setpageNumber}
-          />
-        )}
-      </MainWrapper>
+
+      {tableData === undefined ||
+      topMovers?.length === undefined ||
+      icons === undefined ? (
+        <LoadingScreenWrapper>
+          <LoadingScreen />
+        </LoadingScreenWrapper>
+      ) : (
+        <>
+          <GlobalMetrics />
+          <MainWrapper>
+            <TopMovers topMovers={topMovers} />
+            <AssetTable
+              data={tableData}
+              pageNumber={pageNumber}
+              setpageNumber={setpageNumber}
+            />
+          </MainWrapper>
+        </>
+      )}
+
       <Footer />
     </>
   );

@@ -2,6 +2,7 @@ import { GlobalMetrics } from "../../lib/models/Global-metrics";
 import styled from "@emotion/styled";
 import { useQuery } from "react-query";
 import { fetchGlobalMetrics } from "../../lib/queries/queries";
+import { LinearProgress } from "@mui/material";
 
 const GlobalmetricsStyle = styled.div`
   display: flex;
@@ -25,7 +26,7 @@ export default function GlobalMetricsBar() {
     isError,
   } = useQuery<GlobalMetrics>("metrics", fetchGlobalMetrics);
 
-  if (isLoading) return <div>loading...</div>;
+  if (isLoading) return <LinearProgress />;
   if (isError) return <div>Error</div>;
 
   if (metrics) {

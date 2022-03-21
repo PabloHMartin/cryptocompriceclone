@@ -12,17 +12,9 @@ import {
   fetchTableAssets,
   fetchTopMovers,
 } from "../../lib/queries/queries";
-import styled from "@emotion/styled";
-import LoadingScreen from "../../components/shared/Loading-screen";
+import { MainWrapper, LoadingScreenWrapper } from "../../styles/price-styles";
 
-const MainWrapper = styled.main`
-  padding: 1rem 0rem 2rem;
-  background-color: #f5f6f9;
-`;
-const LoadingScreenWrapper = styled.main`
-  height: 80vh;
-  text-align: center;
-`;
+import LoadingScreen from "../../components/shared/Loading-screen";
 
 export default function PricePage() {
   const [pageNumber, setpageNumber] = useState(1);

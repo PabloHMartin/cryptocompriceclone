@@ -16,63 +16,20 @@ import StarOutlineIcon from "@mui/icons-material/StarOutline";
 import Image from "next/image";
 import Footer from "../../components/shared/Footer";
 import LoadingScreen from "../../components/shared/Loading-screen";
-
-const MainWrapper = styled.main`
-  padding: 1rem 0.5rem 4rem 0.5rem;
-  background-color: #f5f6f9;
-  font-family: BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, Helvetica, Arial,
-    sans-serif;
-`;
-
-const BreadcrumbWrapper = styled.div`
-  margin-bottom: 0.5rem;
-`;
-const BreadcrumbStyle = styled.span`
-  text-transform: capitalize;
-  font-size: 14px;
-  color: "#C9CFDD";
-  cursor: pointer;
-`;
-const AssetTitleWrapper = styled.div`
-  text-transform: capitalize;
-  display: flex;
-  flex-direction: column;
-`;
-const AssetTitle = styled.div`
-  text-transform: capitalize;
-  display: flex;
-  align-items: center;
-  margin: 0.5rem 0;
-`;
-const AssetTitleIcon = styled.div`
-  margin-right: 8px;
-`;
-const AssetTitleSlug = styled.div`
-  font-size: 20px;
-  font-weight: 600;
-  margin-right: 8px;
-`;
-const AssetTitleSymbol = styled.div`
-  padding-top: 6px;
-  font-size: 14px;
-`;
-const WatchListWrapper = styled.div`
-  display: flex;
-  align-items: flex-start;
-`;
-const WatchListWrapperIcon = styled.div`
-  padding-top: 2px;
-`;
-const WatchListWrapperText = styled.div`
-  font-size: 16px;
-  margin-left: 0.5rem;
-`;
-
-const LoadingScreenWrapper = styled.main`
-  height: 80vh;
-  text-align: center;
-`;
+import {
+  BreadcrumbStyle,
+  LoadingScreenWrapper,
+  MainWrapper,
+  BreadcrumbWrapper,
+  AssetTitleWrapper,
+  AssetTitle,
+  AssetTitleIcon,
+  AssetTitleSlug,
+  AssetTitleSymbol,
+  WatchListWrapper,
+  WatchListWrapperIcon,
+  WatchListWrapperText,
+} from "../../styles/slug-styles";
 
 function handleClick(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {}
 

@@ -2,52 +2,17 @@ import React from "react";
 import { SlugPrices } from "../../lib/models/Slug-prices";
 import { TokenInfo } from "../../lib/models/Token-info";
 import Chart from "./Chart";
-import styled from "@emotion/styled";
-
-const ChartContainerStyled = styled.div`
-  background-color: #fff;
-  margin: 1rem 0rem;
-  padding: 1rem;
-  padding-bottom: 0;
-`;
-const ChartContainerHeader = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 1rem;
-`;
-const ChartContainerHeaderSection = styled.div`
-  display: flex;
-  align-items: baseline;
-  margin-bottom: 0.5rem;
-`;
-const ChartContainerHeaderSectionRate = styled.div`
-  font-size: 22px;
-  margin-right: 1rem;
-`;
-
-const ChartContainerFooter = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  padding: 1rem;
-  padding-bottom: 0;
-`;
-const ChartContainerHeaderCol = styled.div`
-  padding: 0.5rem 0rem;
-  font-weight: bold;
-`;
-
-const CellInfo = styled.div`
-  padding: 1rem 0rem;
-`;
-const CellInfoTitle = styled.div`
-  font-size: 14px;
-  padding-bottom: 0.2rem;
-`;
-const CellInfoInfo = styled.div`
-  font-size: 18px;
-  font-weight: bold;
-`;
+import {
+  ChartContainerStyled,
+  ChartContainerHeader,
+  ChartContainerHeaderSection,
+  ChartContainerHeaderSectionRate,
+  ChartContainerFooter,
+  ChartContainerHeaderCol,
+  CellInfo,
+  CellInfoTitle,
+  CellInfoInfo,
+} from "../../styles/chart-container-styles";
 
 export default function ChartContainer({
   tokenInfo,

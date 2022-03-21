@@ -2,48 +2,16 @@ import Image from "next/image";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
-import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import styled from "@emotion/styled";
-
-const IconsStyled = styled.div`
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  max-width: 50%;
-  padding: 2rem 0rem;
-  grid-gap: 1.1rem;
-`;
-
-const FooterStyled = styled.footer`
-  padding: 2.5rem 0.5rem;
-`;
-const ImageWrapper = styled.div`
-  margin-bottom: 2.5rem;
-`;
-const InfoStyled = styled.div`
-  font-size: 0.875rem;
-  color: "#5D667B";
-`;
-const CopyRight = styled.div`
-  font-size: 12px;
-  color: "#5D667B";
-`;
-const CopyRightLinks = styled.div`
-  display: flex;
-  font-size: 12px;
-  color: "#5D667B";
-  p {
-    margin: 0;
-    padding: 0rem 0.5rem;
-    padding-left: 0;
-  }
-  a {
-    border-right: 1px solid lightgrey;
-  }
-`;
-const TypographyStyled = styled(Typography)`
-  font-weight: bold;
-`;
+import {
+  FooterStyled,
+  ImageWrapper,
+  TypographyStyled,
+  IconsStyled,
+  InfoStyled,
+  CopyRight,
+  CopyRightLinks,
+} from "../../styles/footer-styles";
 
 export default function Footer() {
   return (

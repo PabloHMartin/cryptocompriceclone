@@ -15,7 +15,7 @@ import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import StarOutlineIcon from "@mui/icons-material/StarOutline";
 import Image from "next/image";
 import Footer from "../../components/shared/Footer";
-import Head from "next/head";
+import LoadingScreen from "../../components/shared/Loading-screen";
 
 const MainWrapper = styled.main`
   padding: 1rem 0.5rem 4rem 0.5rem;
@@ -67,6 +67,11 @@ const WatchListWrapperIcon = styled.div`
 const WatchListWrapperText = styled.div`
   font-size: 16px;
   margin-left: 0.5rem;
+`;
+
+const LoadingScreenWrapper = styled.main`
+  height: 80vh;
+  text-align: center;
 `;
 
 function handleClick(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {}
@@ -133,58 +138,63 @@ export default function Slug() {
 
   return (
     <>
-      <Head>
-        <meta
-          httpEquiv="Content-Security-Policy"
-          content="upgrade-insecure-requests"
-        />
-      </Head>
       <NavBar />
-      <GlobalMetrics />
-      <MainWrapper>
-        <BreadcrumbWrapper>
-          <Breadcrumbs
-            separator={<NavigateNextIcon fontSize="small" />}
-            aria-label="breadcrumb"
-          >
-            {breadcrumbs}
-          </Breadcrumbs>
-        </BreadcrumbWrapper>
+      {slugInfo === undefined ||
+      slugPrices === undefined ||
+      icons === undefined ? (
+        <LoadingScreenWrapper>
+          <LoadingScreen />
+        </LoadingScreenWrapper>
+      ) : (
+        <>
+          <GlobalMetrics />
+          <MainWrapper>
+            <BreadcrumbWrapper>
+              <Breadcrumbs
+                separator={<NavigateNextIcon fontSize="small" />}
+                aria-label="breadcrumb"
+              >
+                {breadcrumbs}
+              </Breadcrumbs>
+            </BreadcrumbWrapper>
 
-        <AssetTitleWrapper>
-          <AssetTitle>
-            <AssetTitleIcon>
-              {slugInfo?.icon ? (
-                <Image
-                  src={slugInfo.icon}
-                  alt="asset logo"
-                  width={32}
-                  height={32}
-                />
-              ) : (
-                <Image
-                  src="/color_icon.png"
-                  alt="asset logo"
-                  width={32}
-                  height={32}
-                />
-              )}
-            </AssetTitleIcon>
-            <AssetTitleSlug>{slugInfo?.slug}</AssetTitleSlug>
-            <AssetTitleSymbol>{slugInfo?.symbol}</AssetTitleSymbol>
-          </AssetTitle>
-          <WatchListWrapper>
-            <WatchListWrapperIcon>
-              <StarOutlineIcon sx={{ fontSize: 18 }} />
-            </WatchListWrapperIcon>
-            <WatchListWrapperText>Add to Watchlist</WatchListWrapperText>
-          </WatchListWrapper>
-        </AssetTitleWrapper>
+            <AssetTitleWrapper>
+              <AssetTitle>
+                <AssetTitleIcon>
+                  {slugInfo?.icon ? (
+                    <Image
+                      src={slugInfo.icon}
+                      alt="asset logo"
+                      width={32}
+                      height={32}
+                    />
+                  ) : (
+                    <Image
+                      src="/color_icon.png"
+                      alt="asset logo"
+                      width={32}
+                      height={32}
+                    />
+                  )}
+                </AssetTitleIcon>
+                <AssetTitleSlug>{slugInfo?.slug}</AssetTitleSlug>
+                <AssetTitleSymbol>{slugInfo?.symbol}</AssetTitleSymbol>
+              </AssetTitle>
+              <WatchListWrapper>
+                <WatchListWrapperIcon>
+                  <StarOutlineIcon sx={{ fontSize: 18 }} />
+                </WatchListWrapperIcon>
+                <WatchListWrapperText>Add to Watchlist</WatchListWrapperText>
+              </WatchListWrapper>
+            </AssetTitleWrapper>
 
-        {slugPrices && TokenInfo && (
-          <ChartContainer data={slugPrices} tokenInfo={TokenInfo} />
-        )}
-      </MainWrapper>
+            {slugPrices && TokenInfo && (
+              <ChartContainer data={slugPrices} tokenInfo={TokenInfo} />
+            )}
+          </MainWrapper>
+        </>
+      )}
+
       <Footer />
     </>
   );

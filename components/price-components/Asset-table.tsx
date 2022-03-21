@@ -4,59 +4,26 @@ import {
   Paper,
   Table,
   TableBody,
-  TableCell,
   TableContainer,
   TableHead,
   TableRow,
 } from "@mui/material";
-import { Dispatch, SetStateAction, useRef, useState } from "react";
-import styled from "styled-components";
+import { Dispatch, SetStateAction, useRef } from "react";
+
 import { TableAssets } from "../../lib/models/Table-asset";
 import StarOutlineIcon from "@mui/icons-material/StarOutline";
-import Button from "@mui/material/Button";
+
 import Image from "next/image";
-
-const PaginationWrapper = styled.div`
-  font-family: BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, Helvetica, Arial,
-    sans-serif;
-  padding-top: 2rem;
-  display: flex;
-  justify-content: center;
-`;
-
-const TableCellStyled = styled(TableCell)`
-  font-family: BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, Helvetica, Arial,
-    sans-serif;
-`;
-const ThStyled = styled.div`
-  text-transform: uppercase;
-  font-size: 12px;
-  font-weight: bold;
-`;
-
-const ButtonStyled = styled(Button)`
-  text-transform: none;
-  background-color: #1199fa;
-  border-radius: 20px;
-`;
-
-const AssetNameStyled = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
-const AssetImageStyled = styled.div`
-  margin-right: 0.5rem;
-`;
-const AssetDescStyled = styled.div`
-  font-size: 12px;
-`;
-const CellPriceStyled = styled.div`
-  font-size: 12px;
-  font-weight: 600;
-`;
+import {
+  TableCellStyled,
+  ThStyled,
+  AssetNameStyled,
+  AssetImageStyled,
+  AssetDescStyled,
+  CellPriceStyled,
+  ButtonStyled,
+  PaginationWrapper,
+} from "../../styles/asset-table-styles";
 
 export default function AssetTable(props: {
   data: TableAssets;

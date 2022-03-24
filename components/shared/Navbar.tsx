@@ -1,37 +1,6 @@
 import Link from "next/link";
-import styled from "@emotion/styled";
 import Image from "next/image";
-import Button from "@mui/material/Button";
-
-const NavStyle = styled.nav`
-  border-bottom: 1px solid #c9cfdd;
-  padding: 0 0.5rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  ul {
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-    text-decoration: none;
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    height: 3.5rem;
-  }
-`;
-
-const MenuStyled = styled.div`
-  display: flex;
-  align-items: center;
-  padding-right: 0.5rem;
-`;
-
-const ButtonStyled = styled(Button)`
-  text-transform: none;
-  background-color: #1199fa;
-  margin-right: 1rem;
-`;
+import { NavStyle, MenuStyled, ButtonStyled } from "../../styles/navbar-styles";
 
 export default function NavBar() {
   return (

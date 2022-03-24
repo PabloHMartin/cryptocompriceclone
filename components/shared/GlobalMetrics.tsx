@@ -1,23 +1,8 @@
 import { GlobalMetrics } from "../../lib/models/Global-metrics";
-import styled from "@emotion/styled";
 import { useQuery } from "react-query";
 import { fetchGlobalMetrics } from "../../lib/queries/queries";
 import { LinearProgress } from "@mui/material";
-
-const GlobalmetricsStyle = styled.div`
-  display: flex;
-  overflow: scroll;
-  padding: 0.5rem;
-  &::-webkit-scrollbar {
-    display: none;
-  }
-`;
-
-const MetricStyle = styled.div`
-  font-size: 0.75rem;
-  font-weight: 500;
-  margin-right: 16px;
-`;
+import { GlobalmetricsStyle, MetricStyle } from "../../styles/global-metrics";
 
 export default function GlobalMetricsBar() {
   const {

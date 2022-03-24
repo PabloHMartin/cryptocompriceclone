@@ -20,10 +20,13 @@ import {
   AssetNameStyled,
   AssetImageStyled,
   AssetDescStyled,
+  MinichartWrapper,
   CellPriceStyled,
   ButtonStyled,
   PaginationWrapper,
 } from "../../styles/asset-table-styles";
+import { useWindowSize } from "../../lib/hooks/useWindowSize";
+import MiniChart from "./Mini-chart";
 
 export default function AssetTable(props: {
   data: TableAssets;
@@ -31,6 +34,7 @@ export default function AssetTable(props: {
   setpageNumber: Dispatch<SetStateAction<number>>;
 }) {
   const tableRef = useRef<HTMLDivElement>(document.createElement("div"));
+  const size = useWindowSize();
 
   const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
     props.setpageNumber(value);
@@ -42,22 +46,51 @@ export default function AssetTable(props: {
 
   return (
     <>
-      <TableContainer component={Paper} ref={tableRef}>
-        <Table aria-label="simple table">
+      <TableContainer
+        component={Paper}
+        ref={tableRef}
+        sx={{
+          height: "max-content",
+        }}
+      >
+        <Table
+          aria-label="simple table"
+          sx={{
+            height: "max-content",
+          }}
+        >
           <TableHead>
             <TableRow>
-              <TableCellStyled> </TableCellStyled>
-              <TableCellStyled>
+              <TableCellStyled style={{ width: "5%" }}> </TableCellStyled>
+              {size.width > 1440 && (
+                <TableCellStyled style={{ width: "5%" }}># </TableCellStyled>
+              )}
+              <TableCellStyled style={{ width: "20%" }}>
                 <ThStyled>NAME</ThStyled>
               </TableCellStyled>
-              <TableCellStyled align="right">
+              <TableCellStyled align="right" style={{ width: "10%" }}>
                 <ThStyled>PRICE</ThStyled>
               </TableCellStyled>
-              <TableCellStyled> </TableCellStyled>
+              {size.width > 1440 && (
+                <TableCellStyled style={{ width: "20%" }}>
+                  24H CHANGE{" "}
+                </TableCellStyled>
+              )}
+              {size.width > 1440 && (
+                <TableCellStyled style={{ width: "10%" }}>
+                  MARKET CAP
+                </TableCellStyled>
+              )}
+              {size.width > 1440 && (
+                <TableCellStyled style={{ width: "10%" }}>
+                  7D CHART
+                </TableCellStyled>
+              )}
+              <TableCellStyled style={{ width: "10%" }}> </TableCellStyled>
             </TableRow>
           </TableHead>
           <TableBody>
-            {props.data.data.map((row) => (
+            {props.data.data.map((row, index) => (
               <TableRow
                 key={row.id}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
@@ -65,6 +98,10 @@ export default function AssetTable(props: {
                 <TableCellStyled>
                   <StarOutlineIcon sx={{ fontSize: 18 }} />
                 </TableCellStyled>
+                {size.width > 1440 && (
+                  <TableCellStyled>{index + 1}</TableCellStyled>
+                )}
+
                 <TableCellStyled component="th" scope="row">
                   <Link
                     style={{ textDecoration: "none", color: "#0B1426" }}
@@ -104,12 +141,31 @@ export default function AssetTable(props: {
                       {" "}
                       ${row.usd_price.toFixed(2)}{" "}
                     </CellPriceStyled>
-                    <CellPriceStyled>
-                      {" "}
-                      {(row.usd_price_change_24h * 100).toFixed(2)}%
-                    </CellPriceStyled>
+                    {size.width < 1440 && (
+                      <CellPriceStyled>
+                        {" "}
+                        {(row.usd_price_change_24h * 100).toFixed(2)}%
+                      </CellPriceStyled>
+                    )}
                   </Link>
                 </TableCellStyled>
+                {size.width > 1440 && (
+                  <TableCellStyled>
+                    {(row.usd_price_change_24h * 100).toFixed(2)}%
+                  </TableCellStyled>
+                )}
+                {size.width > 1440 && (
+                  <TableCellStyled>
+                    ${(row.usd_marketcap / 1000000000).toFixed(2)} B
+                  </TableCellStyled>
+                )}
+                {size.width > 1440 && (
+                  <TableCellStyled>
+                    <MinichartWrapper>
+                      <MiniChart prices={row.prices} />
+                    </MinichartWrapper>
+                  </TableCellStyled>
+                )}
                 <TableCellStyled>
                   <ButtonStyled variant="contained" size="small">
                     Trade

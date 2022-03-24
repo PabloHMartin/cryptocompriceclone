@@ -9,6 +9,9 @@ export const PaginationWrapper = styled.div`
   padding-top: 2rem;
   display: flex;
   justify-content: center;
+  @media (min-width: 1440px) {
+    justify-content: flex-end;
+  }
 `;
 
 export const TableCellStyled = styled(TableCell)`
@@ -32,7 +35,13 @@ export const AssetNameStyled = styled.div`
   display: flex;
   align-items: center;
 `;
-
+export const MinichartWrapper = styled.div`
+  max-width: 100px;
+  max-height: 55px;
+  position: relative;
+  top: -15px;
+  overflow: hidden;
+`;
 export const AssetImageStyled = styled.div`
   margin-right: 0.5rem;
 `;

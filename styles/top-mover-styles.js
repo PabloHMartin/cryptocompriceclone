@@ -24,7 +24,9 @@ export const SwiperOptsStyled = styled.div`
 export const SwiperCustom = styled(Swiper)`
   padding-bottom: 1rem !important;
 `;
-export const CardContentStyled = styled(CardContent)``;
+export const CardContentStyled = styled(CardContent)`
+  cursor: pointer;
+`;
 
 // card option
 
@@ -34,20 +36,41 @@ export const CardTop = styled.div`
   font-size: 12px;
   padding-bottom: 0.5rem;
 `;
+
+export const CardAssetNameWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  @media (min-width: 1440px) {
+    flex-direction: row;
+  }
+`;
 export const CardAssetName = styled.div`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   font-weight: bold;
+  @media (min-width: 1440px) {
+    margin-right: 0.5rem;
+  }
 `;
 export const CardAssetRate = styled.div`
   font-weight: bold;
   padding-top: 0.5rem;
   font-size: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `;
 export const CardAssetRateDiff = styled.div`
   font-size: 14px;
   font-weight: bold;
+`;
+export const MinichartWrapper = styled.div`
+  max-width: 100px;
+  max-height: 10px;
+  position: absolute;
+  left: 65%;
+  top: 0px;
 `;
 
 export const CardBottom = styled.div`

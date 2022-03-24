@@ -9,6 +9,9 @@ export default function MiniChart({ prices }: { prices: number[] }) {
     title: {
       text: "",
     },
+    credits: {
+      enabled: false,
+    },
     tooltip: {
       enabled: false,
     },

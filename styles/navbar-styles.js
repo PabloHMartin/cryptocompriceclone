@@ -1,8 +1,11 @@
 import styled from "@emotion/styled";
 import Button from "@mui/material/Button";
 
-export const NavStyle = styled.nav`
+export const NavWrapperStyled = styled.div`
   border-bottom: 1px solid #c9cfdd;
+`;
+
+export const NavStyle = styled.nav`
   padding: 0 0.5rem;
   display: flex;
   justify-content: space-between;
@@ -16,6 +19,10 @@ export const NavStyle = styled.nav`
     margin: 0;
     padding: 0;
     height: 3.5rem;
+  }
+  @media (min-width: 1440px) {
+    margin: 0 auto;
+    max-width: 1364px;
   }
 `;
 

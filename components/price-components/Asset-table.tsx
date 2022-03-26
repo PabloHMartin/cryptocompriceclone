@@ -24,6 +24,7 @@ import {
   CellPriceStyled,
   ButtonStyled,
   PaginationWrapper,
+  TableWrapperStyled,
 } from "../../styles/asset-table-styles";
 import { useWindowSize } from "../../lib/hooks/useWindowSize";
 import MiniChart from "./Mini-chart";
@@ -45,7 +46,7 @@ export default function AssetTable(props: {
   const headCells = [{ label: " " }, { label: "NAME" }, { label: "PRICE" }];
 
   return (
-    <>
+    <TableWrapperStyled>
       <TableContainer
         component={Paper}
         ref={tableRef}
@@ -184,6 +185,6 @@ export default function AssetTable(props: {
           shape="rounded"
         />
       </PaginationWrapper>
-    </>
+    </TableWrapperStyled>
   );
 }

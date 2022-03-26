@@ -11,6 +11,10 @@ export const IconsStyled = styled.div`
 
 export const FooterStyled = styled.footer`
   padding: 2.5rem 0.5rem;
+  @media (min-width: 1440px) {
+    margin: 0 auto;
+    max-width: 1364px;
+  }
 `;
 export const ImageWrapper = styled.div`
   margin-bottom: 2.5rem;

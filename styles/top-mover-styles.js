@@ -15,6 +15,11 @@ export const TopMoversContainer = styled.div`
     font-size: 24px;
     margin-top: 0;
   }
+  @media (min-width: 1440px) {
+    margin: 0 auto;
+    max-width: 1364px;
+    padding: 1rem 0rem 1rem;
+  }
 `;
 
 export const SwiperOptsStyled = styled.div`

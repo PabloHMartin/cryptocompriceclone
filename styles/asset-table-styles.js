@@ -2,6 +2,13 @@ import styled from "styled-components";
 import Button from "@mui/material/Button";
 import { TableCell } from "@mui/material";
 
+export const TableWrapperStyled = styled.div`
+  @media (min-width: 1440px) {
+    margin: 0 auto;
+    max-width: 1364px;
+  }
+`;
+
 export const PaginationWrapper = styled.div`
   font-family: BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, Helvetica, Arial,

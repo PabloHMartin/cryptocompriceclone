@@ -10,6 +10,10 @@ export const MainWrapper = styled.main`
 
 export const BreadcrumbWrapper = styled.div`
   margin-bottom: 0.5rem;
+  @media (min-width: 1440px) {
+    margin: 0 auto;
+    max-width: 1364px;
+  }
 `;
 export const BreadcrumbStyle = styled.span`
   text-transform: capitalize;
@@ -21,6 +25,10 @@ export const AssetTitleWrapper = styled.div`
   text-transform: capitalize;
   display: flex;
   flex-direction: column;
+  @media (min-width: 1440px) {
+    margin: 0 auto;
+    max-width: 1364px;
+  }
 `;
 export const AssetTitle = styled.div`
   text-transform: capitalize;

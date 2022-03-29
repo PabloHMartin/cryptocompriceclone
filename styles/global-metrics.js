@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 
 export const GlobalmetricsStyleWrapper = styled.div`
   border-bottom: 1px solid #c9cfdd;
+  margin-top: 56px;
 `;
 export const GlobalmetricsStyle = styled.div`
   display: flex;

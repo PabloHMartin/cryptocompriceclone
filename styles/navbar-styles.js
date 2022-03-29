@@ -3,6 +3,11 @@ import Button from "@mui/material/Button";
 
 export const NavWrapperStyled = styled.div`
   border-bottom: 1px solid #c9cfdd;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: white;
+  z-index: 9;
 `;
 
 export const NavStyle = styled.nav`

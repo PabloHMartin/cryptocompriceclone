@@ -5,6 +5,10 @@ export const ChartContainerStyled = styled.div`
   margin: 1rem 0rem;
   padding: 1rem;
   padding-bottom: 0;
+  @media (min-width: 1440px) {
+    margin: 1rem auto;
+    max-width: 1364px;
+  }
 `;
 export const ChartContainerHeader = styled.div`
   display: flex;

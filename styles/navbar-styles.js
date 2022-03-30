@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import Button from "@mui/material/Button";
+import Image from "next/image";
 
 export const NavWrapperStyled = styled.div`
   border-bottom: 1px solid #c9cfdd;
@@ -24,6 +25,9 @@ export const NavStyle = styled.nav`
     margin: 0;
     padding: 0;
     height: 3.5rem;
+    li {
+      cursor: pointer;
+    }
   }
   @media (min-width: 1440px) {
     margin: 0 auto;

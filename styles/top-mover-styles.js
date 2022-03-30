@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import { CardContent } from "@mui/material";
 import { Swiper } from "swiper/react";
+import Card from "@mui/material/Card";
 
 export const SwiperContainer = styled.div`
   font-size: 0.75rem;
@@ -28,6 +29,9 @@ export const SwiperOptsStyled = styled.div`
 
 export const SwiperCustom = styled(Swiper)`
   padding-bottom: 1rem !important;
+  @media (min-width: 1440px) {
+    min-height: 139px;
+  }
 `;
 export const CardContentStyled = styled(CardContent)`
   cursor: pointer;
@@ -47,6 +51,7 @@ export const CardAssetNameWrapper = styled.div`
   flex-direction: column;
   @media (min-width: 1440px) {
     flex-direction: row;
+    align-items: baseline;
   }
 `;
 export const CardAssetName = styled.div`
@@ -56,6 +61,13 @@ export const CardAssetName = styled.div`
   font-weight: bold;
   @media (min-width: 1440px) {
     margin-right: 0.5rem;
+    font-size: 16px;
+  }
+`;
+
+export const CardStyled = styled(Card)`
+  @media (min-width: 1440px) {
+    min-height: 139px;
   }
 `;
 export const CardAssetRate = styled.div`
@@ -65,10 +77,17 @@ export const CardAssetRate = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  @media (min-width: 1440px) {
+    font-size: 22px;
+    align-items: baseline;
+  }
 `;
 export const CardAssetRateDiff = styled.div`
   font-size: 14px;
   font-weight: bold;
+  @media (min-width: 1440px) {
+    font-size: 16px;
+  }
 `;
 export const MinichartWrapper = styled.div`
   max-width: 100px;

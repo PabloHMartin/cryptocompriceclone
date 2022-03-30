@@ -13,21 +13,31 @@ export function useWindowSize() {
     width: 0,
     height: 0,
   });
+
   useEffect(() => {
+    let timeout: NodeJS.Timeout;
     // Handler to call on window resize
-    function handleResize() {
-      // Set window width/height to state
-      setWindowSize({
-        width: window.innerWidth,
-        height: window.innerHeight,
-      });
-    }
+    const handleResize = () => {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => {
+        // Set window width/height to state
+        setWindowSize({
+          width: window.innerWidth,
+          height: window.innerHeight,
+        });
+      }, 100);
+    };
+
     // Add event listener
     window.addEventListener("resize", handleResize);
-    // Call handler right away so state gets updated with initial window size
+    //   // Call handler right away so state gets updated with initial window size
     handleResize();
-    // Remove event listener on cleanup
-    return () => window.removeEventListener("resize", handleResize);
+
+    // // Remove event listener on cleanup
+    return () => {
+      clearTimeout(timeout);
+      window.removeEventListener("resize", handleResize);
+    };
   }, []); // Empty array ensures that effect is only run on mount
   return windowSize;
 }

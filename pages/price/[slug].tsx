@@ -30,6 +30,7 @@ import {
   WatchListWrapperIcon,
   WatchListWrapperText,
 } from "../../styles/slug-styles";
+import { AssetInfo } from "../../lib/models/Slug-backend";
 
 function handleClick(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {}
 
@@ -115,35 +116,7 @@ export default function Slug() {
               </Breadcrumbs>
             </BreadcrumbWrapper>
 
-            <AssetTitleWrapper>
-              <AssetTitle>
-                <AssetTitleIcon>
-                  {slugInfo?.icon ? (
-                    <Image
-                      src={slugInfo.icon}
-                      alt="asset logo"
-                      width={32}
-                      height={32}
-                    />
-                  ) : (
-                    <Image
-                      src="/color_icon.png"
-                      alt="asset logo"
-                      width={32}
-                      height={32}
-                    />
-                  )}
-                </AssetTitleIcon>
-                <AssetTitleSlug>{slugInfo?.slug}</AssetTitleSlug>
-                <AssetTitleSymbol>{slugInfo?.symbol}</AssetTitleSymbol>
-              </AssetTitle>
-              <WatchListWrapper>
-                <WatchListWrapperIcon>
-                  <StarOutlineIcon sx={{ fontSize: 18 }} />
-                </WatchListWrapperIcon>
-                <WatchListWrapperText>Add to Watchlist</WatchListWrapperText>
-              </WatchListWrapper>
-            </AssetTitleWrapper>
+            <AssetHeader slugInfo={slugInfo} />
 
             {slugPrices && TokenInfo && (
               <ChartContainer data={slugPrices} tokenInfo={TokenInfo} />
@@ -156,3 +129,37 @@ export default function Slug() {
     </>
   );
 }
+
+const AssetHeader = ({ slugInfo }: { slugInfo: AssetInfo }) => {
+  return (
+    <AssetTitleWrapper>
+      <AssetTitle>
+        <AssetTitleIcon>
+          {slugInfo?.icon ? (
+            <Image
+              src={slugInfo.icon}
+              alt="asset logo"
+              width={32}
+              height={32}
+            />
+          ) : (
+            <Image
+              src="/color_icon.png"
+              alt="asset logo"
+              width={32}
+              height={32}
+            />
+          )}
+        </AssetTitleIcon>
+        <AssetTitleSlug>{slugInfo?.slug}</AssetTitleSlug>
+        <AssetTitleSymbol>{slugInfo?.symbol}</AssetTitleSymbol>
+      </AssetTitle>
+      <WatchListWrapper>
+        <WatchListWrapperIcon>
+          <StarOutlineIcon sx={{ fontSize: 18 }} />
+        </WatchListWrapperIcon>
+        <WatchListWrapperText>Add to Watchlist</WatchListWrapperText>
+      </WatchListWrapper>
+    </AssetTitleWrapper>
+  );
+};

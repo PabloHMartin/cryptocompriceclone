@@ -1,5 +1,4 @@
 import { TopMover } from "../../lib/models/Top-mover";
-import Card from "@mui/material/Card";
 import Image from "next/image";
 import { SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper";
@@ -22,6 +21,7 @@ import {
   CardAssetRate,
   CardAssetNameWrapper,
   MinichartWrapper,
+  CardStyled,
 } from "../../styles/top-mover-styles";
 import Link from "next/link";
 import MiniChart from "./Mini-chart";
@@ -42,7 +42,7 @@ const SwiperOpts = ({ topMovers }: { topMovers: TopMover[] }) => {
 
   return (
     <SwiperCustom
-      spaceBetween={50}
+      spaceBetween={size.width > 1440 ? 20 : 50}
       slidesPerView={size.width > 1440 ? 4 : 2.5}
       loop={true}
       autoplay={{
@@ -66,7 +66,10 @@ const CardOption = ({ mover }: { mover: TopMover }) => {
   const size = useWindowSize();
   return (
     <Link href={`price/${mover.slug}`} passHref>
-      <Card sx={{ minWidth: 150 }} elevation={0}>
+      <CardStyled
+        sx={size.width < 1440 ? { minWidth: 150 } : { minWidth: 300 }}
+        elevation={0}
+      >
         <CardContentStyled>
           <CardTop>
             {mover.icon ? (
@@ -75,8 +78,8 @@ const CardOption = ({ mover }: { mover: TopMover }) => {
               <Image
                 src="/color_icon.png"
                 alt="asset logo"
-                width={24}
-                height={24}
+                width={size.width < 1440 ? 24 : 32}
+                height={size.width < 1440 ? 24 : 32}
               />
             )}
 
@@ -96,12 +99,14 @@ const CardOption = ({ mover }: { mover: TopMover }) => {
             <CardAssetRate>
               <div>${mover.usd_price.toFixed(2)} </div>
               {size.width > 1440 && (
-                <CardAssetRateDiff>10.85%</CardAssetRateDiff>
+                <CardAssetRateDiff>
+                  {mover.usd_price_change_24h.toFixed(2)}%
+                </CardAssetRateDiff>
               )}
             </CardAssetRate>
           </CardBottom>
         </CardContentStyled>
-      </Card>
+      </CardStyled>
     </Link>
   );
 };

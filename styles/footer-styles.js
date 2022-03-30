@@ -8,12 +8,28 @@ export const IconsStyled = styled.div`
   padding: 2rem 0rem;
   grid-gap: 1.1rem;
 `;
+export const IconsStyledDesktop = styled.div`
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-gap: 1.1rem;
+  @media (min-width: 1440px) {
+    width: 40%;
+  }
+`;
+export const IconsStyledDesktopWrapper = styled.div`
+  display: hidden;
+  @media (min-width: 1440px) {
+    display: block;
+    width: 50%;
+    display: flex;
+    justify-content: flex-end;
+  }
+`;
 
-export const FooterStyled = styled.footer`
+export const FooterStyled = styled.div`
   padding: 2.5rem 0.5rem;
   @media (min-width: 1440px) {
-    margin: 0 auto;
-    max-width: 1364px;
+    width: 50%;
   }
 `;
 export const ImageWrapper = styled.div`
@@ -42,4 +58,17 @@ export const CopyRightLinks = styled.div`
 `;
 export const TypographyStyled = styled(Typography)`
   font-weight: bold;
+`;
+export const FooterWrapper = styled.footer`
+  display: flex;
+  flex-direction: column;
+  max-width: 1364px;
+  margin: 0 auto;
+  padding: 2.5rem 0.5rem;
+  @media (min-width: 1440px) {
+    flex-direction: row;
+    padding: 2.5rem 0rem;
+    justify-content: space-between;
+    align-items: baseline;
+  }
 `;

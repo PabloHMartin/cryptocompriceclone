@@ -12,7 +12,15 @@ import {
   CellInfo,
   CellInfoTitle,
   CellInfoInfo,
+  ChartContainerHeaderSectionPercent,
+  ChartContainerHeaderSectionDesktop,
+  ChartContainerHeaderSectionRateAndPercent,
+  ChartContainerHeaderSectionSub,
+  ChartContainerHeaderSectionPercentSub,
+  ChartContainerHeaderSectionIcons,
 } from "../../styles/chart-container-styles";
+import Image from "next/image";
+import { useWindowSize } from "../../lib/hooks/useWindowSize";
 
 export default function ChartContainer({
   tokenInfo,
@@ -21,6 +29,8 @@ export default function ChartContainer({
   tokenInfo: TokenInfo;
   data: SlugPrices;
 }) {
+  const size = useWindowSize();
+
   function currencyFormat(num: number) {
     return "$" + num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
   }
@@ -29,21 +39,65 @@ export default function ChartContainer({
     <ChartContainerStyled>
       <ChartContainerHeader>
         <ChartContainerHeaderSection>
-          <ChartContainerHeaderSectionRate>
-            {currencyFormat(Number(tokenInfo.usd_price.toFixed(2)))} USD
-          </ChartContainerHeaderSectionRate>
-          <div>{(data.price_change * 100).toFixed(2)}% (24H)</div>
+          <ChartContainerHeaderSectionRateAndPercent>
+            <ChartContainerHeaderSectionRate>
+              {currencyFormat(Number(tokenInfo.usd_price.toFixed(2)))} USD
+            </ChartContainerHeaderSectionRate>
+            <ChartContainerHeaderSectionPercent>
+              {(data.price_change * 100).toFixed(2)}% <span>(24H)</span>
+            </ChartContainerHeaderSectionPercent>
+          </ChartContainerHeaderSectionRateAndPercent>
+          {size.width > 1440 && (
+            <ChartContainerHeaderSectionDesktop>
+              <div>
+                <Image
+                  src={"/icons/download.svg"}
+                  alt="asset logo"
+                  width={24}
+                  height={24}
+                />
+              </div>
+              <div>
+                <Image
+                  src={"/icons/share.svg"}
+                  alt="asset logo"
+                  width={24}
+                  height={24}
+                />
+              </div>
+            </ChartContainerHeaderSectionDesktop>
+          )}
         </ChartContainerHeaderSection>
 
-        <ChartContainerHeaderSection>
-          <div>(I)</div>
-          <div>(I)</div>
-        </ChartContainerHeaderSection>
+        {size.width < 1440 && (
+          <ChartContainerHeaderSectionIcons>
+            <div>
+              <Image
+                src={"/icons/download.svg"}
+                alt="asset logo"
+                width={24}
+                height={24}
+              />
+            </div>
+            <div>
+              <Image
+                src={"/icons/share.svg"}
+                alt="asset logo"
+                width={24}
+                height={24}
+              />
+            </div>
+          </ChartContainerHeaderSectionIcons>
+        )}
 
-        <ChartContainerHeaderSection>
-          <div>{tokenInfo.btc_price} BTC</div>
-          <div>{tokenInfo.btc_price_change_24h.toFixed(2)} (24H)</div>
-        </ChartContainerHeaderSection>
+        <ChartContainerHeaderSectionSub>
+          <ChartContainerHeaderSectionPercentSub>
+            {tokenInfo.btc_price} BTC
+          </ChartContainerHeaderSectionPercentSub>
+          <ChartContainerHeaderSectionPercentSub>
+            {tokenInfo.btc_price_change_24h.toFixed(2)}% <span>(24H)</span>{" "}
+          </ChartContainerHeaderSectionPercentSub>
+        </ChartContainerHeaderSectionSub>
       </ChartContainerHeader>
 
       <Chart data={data} />

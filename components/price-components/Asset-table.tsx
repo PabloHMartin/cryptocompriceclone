@@ -25,6 +25,8 @@ import {
   ButtonStyled,
   PaginationWrapper,
   TableWrapperStyled,
+  AssetDescStyledName,
+  AssetDescStyledSymbol,
 } from "../../styles/asset-table-styles";
 import { useWindowSize } from "../../lib/hooks/useWindowSize";
 import MiniChart from "./Mini-chart";
@@ -49,6 +51,7 @@ export default function AssetTable(props: {
     <TableWrapperStyled>
       <TableContainer
         component={Paper}
+        elevation={0}
         ref={tableRef}
         sx={{
           height: "max-content",
@@ -62,7 +65,7 @@ export default function AssetTable(props: {
         >
           <TableHead>
             <TableRow>
-              <TableCellStyled style={{ width: "5%" }}> </TableCellStyled>
+              <TableCellStyled style={{ width: "3%" }}> </TableCellStyled>
               {size.width > 1440 && (
                 <TableCellStyled style={{ width: "5%" }}># </TableCellStyled>
               )}
@@ -73,8 +76,13 @@ export default function AssetTable(props: {
                 <ThStyled>PRICE</ThStyled>
               </TableCellStyled>
               {size.width > 1440 && (
-                <TableCellStyled style={{ width: "20%" }}>
+                <TableCellStyled style={{ width: "10%" }}>
                   24H CHANGE{" "}
+                </TableCellStyled>
+              )}
+              {size.width > 1440 && (
+                <TableCellStyled style={{ width: "10%" }}>
+                  24H VOLUME{" "}
                 </TableCellStyled>
               )}
               {size.width > 1440 && (
@@ -127,8 +135,11 @@ export default function AssetTable(props: {
                         )}
                       </AssetImageStyled>
                       <AssetDescStyled>
-                        <div> {row.name}</div>
-                        <div> {row.symbol}</div>
+                        <AssetDescStyledName> {row.name}</AssetDescStyledName>
+                        <AssetDescStyledSymbol>
+                          {" "}
+                          {row.symbol}
+                        </AssetDescStyledSymbol>
                       </AssetDescStyled>
                     </AssetNameStyled>
                   </Link>
@@ -153,6 +164,11 @@ export default function AssetTable(props: {
                 {size.width > 1440 && (
                   <TableCellStyled>
                     {(row.usd_price_change_24h * 100).toFixed(2)}%
+                  </TableCellStyled>
+                )}
+                {size.width > 1440 && (
+                  <TableCellStyled>
+                    {(row.usd_volume_24h / 1000000000).toFixed(2)} B
                   </TableCellStyled>
                 )}
                 {size.width > 1440 && (

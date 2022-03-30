@@ -1,6 +1,6 @@
 import axios from "axios";
 import httpClient from "../../components/shared/http-client";
-import { Slug } from "../models/Slug-backend";
+import { AssetInfo } from "../models/Slug-backend";
 import { SlugPrices } from "../models/Slug-prices";
 import { TableAssets } from "../models/Table-asset";
 import { TokenInfo } from "../models/Token-info";
@@ -27,7 +27,7 @@ export const fetchTableAssets = async (
 
 export const fetchSlug = async (
   slug: string | string[] | undefined
-): Promise<Slug> => {
+): Promise<AssetInfo> => {
   const res = await httpClient.get(`v1/exchange/${slug}`);
   return res.data;
 };

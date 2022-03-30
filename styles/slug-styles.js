@@ -28,6 +28,9 @@ export const AssetTitleWrapper = styled.div`
   @media (min-width: 1440px) {
     margin: 0 auto;
     max-width: 1364px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
   }
 `;
 export const AssetTitle = styled.div`
@@ -39,14 +42,20 @@ export const AssetTitle = styled.div`
 export const AssetTitleIcon = styled.div`
   margin-right: 8px;
 `;
-export const AssetTitleSlug = styled.div`
+export const AssetTitleSlug = styled.h1`
   font-size: 20px;
   font-weight: 600;
   margin-right: 8px;
+  @media (min-width: 1440px) {
+    font-size: 24px;
+  }
 `;
 export const AssetTitleSymbol = styled.div`
   padding-top: 6px;
   font-size: 14px;
+  @media (min-width: 1440px) {
+    font-size: 16px;
+  }
 `;
 export const WatchListWrapper = styled.div`
   display: flex;

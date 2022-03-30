@@ -25,6 +25,7 @@ export const TableCellStyled = styled(TableCell)`
   font-family: BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, Helvetica, Arial,
     sans-serif;
+  font-weight: 600;
 `;
 export const ThStyled = styled.div`
   text-transform: uppercase;
@@ -54,8 +55,31 @@ export const AssetImageStyled = styled.div`
 `;
 export const AssetDescStyled = styled.div`
   font-size: 12px;
+  @media (min-width: 1440px) {
+    font-size: 14px;
+  }
 `;
+export const AssetDescStyledName = styled.div`
+  font-size: 12px;
+  font-weight: 600;
+  color: #0b1426;
+  @media (min-width: 1440px) {
+    font-size: 14px;
+  }
+`;
+export const AssetDescStyledSymbol = styled.div`
+  font-size: 12px;
+  color: #5d667b;
+  @media (min-width: 1440px) {
+    font-size: 14px;
+    font-weight: bold;
+  }
+`;
+
 export const CellPriceStyled = styled.div`
   font-size: 12px;
   font-weight: 600;
+  @media (min-width: 1440px) {
+    font-size: 14px;
+  }
 `;

@@ -25,9 +25,13 @@ export default function NavBar() {
               <div>
                 {size.width > 1440 ? (
                   <Image
-                    src="/price-full-dark.svg"
+                    src={
+                      size.width > 1440
+                        ? "/price-full-dark.svg"
+                        : "/price-dark.svg"
+                    }
                     alt="logo big"
-                    width={220}
+                    width={size.width > 1440 ? 250 : 100}
                     height={40}
                   />
                 ) : (
@@ -76,7 +80,9 @@ function DesktopOptions() {
       </div>
       <div>
         <NavButtonDesktopLogin variant="text">Log In</NavButtonDesktopLogin>
-        <NavButtonDesktopSignUp variant="text">Sign Up</NavButtonDesktopSignUp>
+        <NavButtonDesktopSignUp disableElevation variant="contained">
+          Sign Up
+        </NavButtonDesktopSignUp>
       </div>
     </NavButtonDesktopWrapper>
   );

@@ -16,7 +16,7 @@ export interface Crypto {
   cro: number;
 }
 
-export interface Slug {
+export interface AssetInfo {
   slug: string;
   symbol: string;
   fiat: Fiat;

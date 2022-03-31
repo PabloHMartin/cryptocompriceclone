@@ -30,6 +30,8 @@ import {
 } from "../../styles/asset-table-styles";
 import { useWindowSize } from "../../lib/hooks/useWindowSize";
 import MiniChart from "./Mini-chart";
+import { useModal } from "../../lib/hooks/useModal";
+import { UiModal } from "../shared/UiModal";
 
 export default function AssetTable(props: {
   data: TableAssets;
@@ -38,6 +40,7 @@ export default function AssetTable(props: {
 }) {
   const tableRef = useRef<HTMLDivElement>(document.createElement("div"));
   const size = useWindowSize();
+  const [modalIsVisible, toggleModalVisibility] = useModal();
 
   const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
     props.setpageNumber(value);
@@ -184,7 +187,11 @@ export default function AssetTable(props: {
                   </TableCellStyled>
                 )}
                 <TableCellStyled>
-                  <ButtonStyled variant="contained" size="small">
+                  <ButtonStyled
+                    variant="contained"
+                    size="small"
+                    onClick={toggleModalVisibility}
+                  >
                     Trade
                   </ButtonStyled>
                 </TableCellStyled>
@@ -201,6 +208,10 @@ export default function AssetTable(props: {
           shape="rounded"
         />
       </PaginationWrapper>
+      <UiModal
+        isVisible={modalIsVisible}
+        toggleVisibility={toggleModalVisibility}
+      />
     </TableWrapperStyled>
   );
 }

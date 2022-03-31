@@ -31,6 +31,8 @@ import {
   WatchListWrapperText,
 } from "../../styles/slug-styles";
 import { AssetInfo } from "../../lib/models/Slug-backend";
+import { useModal } from "../../lib/hooks/useModal";
+import { UiModal } from "../../components/shared/UiModal";
 
 function handleClick(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {}
 
@@ -131,6 +133,7 @@ export default function Slug() {
 }
 
 const AssetHeader = ({ slugInfo }: { slugInfo: AssetInfo }) => {
+  const [modalIsVisible, toggleModalVisibility] = useModal();
   return (
     <AssetTitleWrapper>
       <AssetTitle>
@@ -158,8 +161,14 @@ const AssetHeader = ({ slugInfo }: { slugInfo: AssetInfo }) => {
         <WatchListWrapperIcon>
           <StarOutlineIcon sx={{ fontSize: 18 }} />
         </WatchListWrapperIcon>
-        <WatchListWrapperText>Add to Watchlist</WatchListWrapperText>
+        <WatchListWrapperText onClick={toggleModalVisibility}>
+          Add to Watchlist
+        </WatchListWrapperText>
       </WatchListWrapper>
+      <UiModal
+        isVisible={modalIsVisible}
+        toggleVisibility={toggleModalVisibility}
+      />
     </AssetTitleWrapper>
   );
 };

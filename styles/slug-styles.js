@@ -67,6 +67,7 @@ export const WatchListWrapperIcon = styled.div`
 export const WatchListWrapperText = styled.div`
   font-size: 16px;
   margin-left: 0.5rem;
+  cursor: pointer;
 `;
 
 export const LoadingScreenWrapper = styled.main`

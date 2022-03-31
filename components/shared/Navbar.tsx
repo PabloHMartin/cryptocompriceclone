@@ -12,12 +12,19 @@ import {
 } from "../../styles/navbar-styles";
 import { useWindowSize } from "../../lib/hooks/useWindowSize";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import { useModal } from "../../lib/hooks/useModal";
+import { UiModal } from "./UiModal";
 
 export default function NavBar() {
   const size = useWindowSize();
+  const [modalIsVisible, toggleModalVisibility] = useModal();
 
   return (
     <NavWrapperStyled>
+      <UiModal
+        isVisible={modalIsVisible}
+        toggleVisibility={toggleModalVisibility}
+      />
       <NavStyle>
         <ul>
           <li>
@@ -50,7 +57,11 @@ export default function NavBar() {
           <DesktopOptions />
         ) : (
           <MenuStyled>
-            <ButtonStyled variant="contained" size="small">
+            <ButtonStyled
+              variant="contained"
+              size="small"
+              onClick={toggleModalVisibility}
+            >
               Sign up
             </ButtonStyled>
             <Image
@@ -58,6 +69,7 @@ export default function NavBar() {
               alt="search"
               width={24}
               height={24}
+              onClick={toggleModalVisibility}
             />
             <Image src="/menu_black.svg" alt="menu" width={24} height={24} />
           </MenuStyled>
@@ -68,22 +80,34 @@ export default function NavBar() {
 }
 
 function DesktopOptions() {
+  const [modalIsVisible, toggleModalVisibility] = useModal();
   return (
     <NavButtonDesktopWrapper>
       <div>
-        <NavButtonDesktop variant="text">
+        <NavButtonDesktop variant="text" onClick={toggleModalVisibility}>
           Coins <KeyboardArrowDownIcon />
         </NavButtonDesktop>
-        <NavButtonDesktop variant="text">
+        <NavButtonDesktop variant="text" onClick={toggleModalVisibility}>
           NFT <KeyboardArrowDownIcon />
         </NavButtonDesktop>
       </div>
       <div>
-        <NavButtonDesktopLogin variant="text">Log In</NavButtonDesktopLogin>
-        <NavButtonDesktopSignUp disableElevation variant="contained">
+        <NavButtonDesktopLogin variant="text" onClick={toggleModalVisibility}>
+          Log In
+        </NavButtonDesktopLogin>
+        <NavButtonDesktopSignUp
+          disableElevation
+          variant="contained"
+          onClick={toggleModalVisibility}
+        >
           Sign Up
         </NavButtonDesktopSignUp>
       </div>
+
+      <UiModal
+        isVisible={modalIsVisible}
+        toggleVisibility={toggleModalVisibility}
+      />
     </NavButtonDesktopWrapper>
   );
 }

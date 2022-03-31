@@ -21,6 +21,8 @@ import {
 } from "../../styles/chart-container-styles";
 import Image from "next/image";
 import { useWindowSize } from "../../lib/hooks/useWindowSize";
+import { useModal } from "../../lib/hooks/useModal";
+import { UiModal } from "../shared/UiModal";
 
 export default function ChartContainer({
   tokenInfo,
@@ -30,6 +32,7 @@ export default function ChartContainer({
   data: SlugPrices;
 }) {
   const size = useWindowSize();
+  const [modalIsVisible, toggleModalVisibility] = useModal();
 
   function currencyFormat(num: number) {
     return "$" + num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
@@ -51,6 +54,7 @@ export default function ChartContainer({
             <ChartContainerHeaderSectionDesktop>
               <div>
                 <Image
+                  onClick={toggleModalVisibility}
                   src={"/icons/download.svg"}
                   alt="asset logo"
                   width={24}
@@ -59,6 +63,7 @@ export default function ChartContainer({
               </div>
               <div>
                 <Image
+                  onClick={toggleModalVisibility}
                   src={"/icons/share.svg"}
                   alt="asset logo"
                   width={24}
@@ -73,6 +78,7 @@ export default function ChartContainer({
           <ChartContainerHeaderSectionIcons>
             <div>
               <Image
+                onClick={toggleModalVisibility}
                 src={"/icons/download.svg"}
                 alt="asset logo"
                 width={24}
@@ -81,6 +87,7 @@ export default function ChartContainer({
             </div>
             <div>
               <Image
+                onClick={toggleModalVisibility}
                 src={"/icons/share.svg"}
                 alt="asset logo"
                 width={24}
@@ -135,6 +142,10 @@ export default function ChartContainer({
           </CellInfo>
         </ChartContainerHeaderCol>
       </ChartContainerFooter>
+      <UiModal
+        isVisible={modalIsVisible}
+        toggleVisibility={toggleModalVisibility}
+      />
     </ChartContainerStyled>
   );
 }

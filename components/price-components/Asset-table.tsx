@@ -32,12 +32,14 @@ import { useWindowSize } from "../../lib/hooks/useWindowSize";
 import MiniChart from "./Mini-chart";
 import { useModal } from "../../lib/hooks/useModal";
 import { UiModal } from "../shared/UiModal";
+import { Usei18N } from "../../lib/context/i18n";
 
 export default function AssetTable(props: {
   data: TableAssets;
   pageNumber: number;
   setpageNumber: Dispatch<SetStateAction<number>>;
 }) {
+  const { t } = Usei18N();
   const tableRef = useRef<HTMLDivElement>(document.createElement("div"));
   const size = useWindowSize();
   const [modalIsVisible, toggleModalVisibility] = useModal();
@@ -73,29 +75,29 @@ export default function AssetTable(props: {
                 <TableCellStyled style={{ width: "5%" }}># </TableCellStyled>
               )}
               <TableCellStyled style={{ width: "20%" }}>
-                <ThStyled>NAME</ThStyled>
+                <ThStyled>{t("NAME")}</ThStyled>
               </TableCellStyled>
               <TableCellStyled align="right" style={{ width: "10%" }}>
-                <ThStyled>PRICE</ThStyled>
+                <ThStyled>{t("PRICE")}</ThStyled>
               </TableCellStyled>
               {size.width > 1440 && (
                 <TableCellStyled style={{ width: "10%" }}>
-                  24H CHANGE{" "}
+                  {t("24_H_CHANGE")}{" "}
                 </TableCellStyled>
               )}
               {size.width > 1440 && (
                 <TableCellStyled style={{ width: "10%" }}>
-                  24H VOLUME{" "}
+                  {t("24_H_VOLUME")}{" "}
                 </TableCellStyled>
               )}
               {size.width > 1440 && (
                 <TableCellStyled style={{ width: "10%" }}>
-                  MARKET CAP
+                  {t("MARKET_CAP")}
                 </TableCellStyled>
               )}
               {size.width > 1440 && (
                 <TableCellStyled style={{ width: "10%" }}>
-                  7D CHART
+                  {t("7D_CHART")}
                 </TableCellStyled>
               )}
               <TableCellStyled style={{ width: "10%" }}> </TableCellStyled>
@@ -192,7 +194,7 @@ export default function AssetTable(props: {
                     size="small"
                     onClick={toggleModalVisibility}
                   >
-                    Trade
+                    {t("TRADE")}
                   </ButtonStyled>
                 </TableCellStyled>
               </TableRow>

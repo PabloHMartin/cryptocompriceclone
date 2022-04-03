@@ -25,7 +25,9 @@ export const TableCellStyled = styled(TableCell)`
   font-family: BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, Helvetica, Arial,
     sans-serif;
-  font-weight: 600;
+  font-weight: bold;
+  font-size: 12px;
+  text-transform: uppercase;
 `;
 export const ThStyled = styled.div`
   text-transform: uppercase;
@@ -37,6 +39,7 @@ export const ButtonStyled = styled(Button)`
   text-transform: none;
   background-color: #1199fa;
   border-radius: 20px;
+  text-transform: capitalize;
 `;
 
 export const AssetNameStyled = styled.div`

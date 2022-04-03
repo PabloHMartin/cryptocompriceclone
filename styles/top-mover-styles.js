@@ -12,9 +12,11 @@ export const SwiperContainer = styled.div`
 export const TopMoversContainer = styled.div`
   background-color: #f5f6f9;
   padding: 1rem 0.8rem 1rem;
+
   h2 {
     font-size: 24px;
     margin-top: 0;
+    text-transform: capitalize;
   }
   @media (min-width: 1440px) {
     margin: 0 auto;

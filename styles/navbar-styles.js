@@ -46,6 +46,7 @@ export const ButtonStyled = styled(Button)`
   text-transform: none;
   background-color: #1199fa;
   margin-right: 1rem;
+  text-transform: capitalize;
 `;
 
 export const NavButtonDesktop = styled(Button)`
@@ -67,6 +68,7 @@ export const NavButtonDesktopLogin = styled(Button)`
   padding-inline-start: 0.75em;
   padding-inline-end: 0.75em;
   font-family: inherit;
+  text-transform: capitalize;
 `;
 export const NavButtonDesktopSignUp = styled(Button)`
   text-transform: none;
@@ -77,6 +79,7 @@ export const NavButtonDesktopSignUp = styled(Button)`
   padding-inline-start: 0.75em;
   padding-inline-end: 0.75em;
   font-family: inherit;
+  text-transform: capitalize;
 `;
 
 export const NavButtonDesktopWrapper = styled.div`

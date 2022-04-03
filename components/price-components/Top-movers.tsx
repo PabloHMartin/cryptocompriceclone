@@ -25,11 +25,14 @@ import {
 } from "../../styles/top-mover-styles";
 import Link from "next/link";
 import MiniChart from "./Mini-chart";
+import { Usei18N } from "../../lib/context/i18n";
 
 export default function TopMovers({ topMovers }: { topMovers: TopMover[] }) {
+  const { t } = Usei18N();
+
   return (
     <TopMoversContainer>
-      <h2>Top Movers</h2>
+      <h2>{t("TOP_MOVERS")}</h2>
       <SwiperOptsStyled>
         <SwiperOpts topMovers={topMovers} />
       </SwiperOptsStyled>

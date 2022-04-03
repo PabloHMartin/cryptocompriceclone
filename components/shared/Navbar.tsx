@@ -14,8 +14,10 @@ import { useWindowSize } from "../../lib/hooks/useWindowSize";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { useModal } from "../../lib/hooks/useModal";
 import { UiModal } from "./UiModal";
+import { Usei18N } from "../../lib/context/i18n";
 
 export default function NavBar() {
+  const { t } = Usei18N();
   const size = useWindowSize();
   const [modalIsVisible, toggleModalVisibility] = useModal();
 
@@ -62,7 +64,7 @@ export default function NavBar() {
               size="small"
               onClick={toggleModalVisibility}
             >
-              Sign up
+              {t("SIGN_UP")}
             </ButtonStyled>
             <Image
               src="/search_black.svg"
@@ -80,27 +82,28 @@ export default function NavBar() {
 }
 
 function DesktopOptions() {
+  const { t } = Usei18N();
   const [modalIsVisible, toggleModalVisibility] = useModal();
   return (
     <NavButtonDesktopWrapper>
       <div>
         <NavButtonDesktop variant="text" onClick={toggleModalVisibility}>
-          Coins <KeyboardArrowDownIcon />
+          {t("COINS_NAVBAR")} <KeyboardArrowDownIcon />
         </NavButtonDesktop>
         <NavButtonDesktop variant="text" onClick={toggleModalVisibility}>
-          NFT <KeyboardArrowDownIcon />
+          {t("NFTS_NAVBAR")} <KeyboardArrowDownIcon />
         </NavButtonDesktop>
       </div>
       <div>
         <NavButtonDesktopLogin variant="text" onClick={toggleModalVisibility}>
-          Log In
+          {t("LOG_IN")}
         </NavButtonDesktopLogin>
         <NavButtonDesktopSignUp
           disableElevation
           variant="contained"
           onClick={toggleModalVisibility}
         >
-          Sign Up
+          {t("SIGN_UP")}
         </NavButtonDesktopSignUp>
       </div>
 

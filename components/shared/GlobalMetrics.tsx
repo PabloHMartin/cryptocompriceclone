@@ -9,8 +9,10 @@ import {
   MetricStyleInfo,
   MetricStyleTitle,
 } from "../../styles/global-metrics";
+import { Usei18N } from "../../lib/context/i18n";
 
 export default function GlobalMetricsBar() {
+  const { t } = Usei18N();
   const {
     data: metrics,
     isLoading,
@@ -33,36 +35,36 @@ export default function GlobalMetricsBar() {
       <GlobalmetricsStyleWrapper>
         <GlobalmetricsStyle>
           <MetricStyle>
-            <MetricStyleTitle>Coins</MetricStyleTitle>
+            <MetricStyleTitle>{t("COINS")}</MetricStyleTitle>
             <MetricStyleInfo>{currencyFormat(metrics.coins)}</MetricStyleInfo>
           </MetricStyle>
           <MetricStyle>
-            <MetricStyleTitle>Market&#160;Cap</MetricStyleTitle>
+            <MetricStyleTitle>{t("MARKET_CAP")}</MetricStyleTitle>
             <MetricStyleInfo>
               ${currencyFormatBillions(metrics.market_cap) + ` B USD`}
             </MetricStyleInfo>
           </MetricStyle>
           <MetricStyle>
-            <MetricStyleTitle>24H&#160;Change</MetricStyleTitle>
+            <MetricStyleTitle>{t("24_H_CHANGE")}</MetricStyleTitle>
             <MetricStyleInfo>
               {(metrics.market_cap_change_rate * 100).toFixed(2)}%
             </MetricStyleInfo>
           </MetricStyle>
           <MetricStyle>
-            <MetricStyleTitle>24H&#160;Volume</MetricStyleTitle>
+            <MetricStyleTitle>{t("24_H_VOLUME")}</MetricStyleTitle>
             <MetricStyleInfo>
               ${(metrics.volume_24h / 1000000000).toFixed(2) + ` B USD`}
             </MetricStyleInfo>
           </MetricStyle>
           <MetricStyle>
-            <MetricStyleTitle>Dominance</MetricStyleTitle>
+            <MetricStyleTitle>{t("DOMINANCE")}</MetricStyleTitle>
             <MetricStyleInfo>
               BTC: {(metrics.btc_dominance_rate * 100).toFixed(2)}% BTC:{" "}
               {(metrics.eth_dominance_rate * 100).toFixed(2)}%
             </MetricStyleInfo>
           </MetricStyle>
           <MetricStyle>
-            <MetricStyleTitle>ETH&#160;Gas</MetricStyleTitle>
+            <MetricStyleTitle>{t("ETH_GAS")}</MetricStyleTitle>
             <MetricStyleInfo>{metrics.eth_gas} Gwei</MetricStyleInfo>
           </MetricStyle>
         </GlobalmetricsStyle>

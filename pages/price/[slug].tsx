@@ -33,10 +33,12 @@ import {
 import { AssetInfo } from "../../lib/models/Slug-backend";
 import { useModal } from "../../lib/hooks/useModal";
 import { UiModal } from "../../components/shared/UiModal";
+import { Usei18N } from "../../lib/context/i18n";
 
 function handleClick(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {}
 
 export default function Slug() {
+  const { t } = Usei18N();
   const router = useRouter();
   const { slug } = router.query;
 
@@ -89,7 +91,7 @@ export default function Slug() {
       href="/price"
       onClick={handleClick}
     >
-      <BreadcrumbStyle>all prices</BreadcrumbStyle>
+      <BreadcrumbStyle>{t("TOP_MOVERS")}</BreadcrumbStyle>
     </Link>,
     <Typography fontSize={"16px"} key="3" color="text.primary">
       <BreadcrumbStyle>{TokenInfo?.slug} price</BreadcrumbStyle>
@@ -133,6 +135,7 @@ export default function Slug() {
 }
 
 const AssetHeader = ({ slugInfo }: { slugInfo: AssetInfo }) => {
+  const { t } = Usei18N();
   const [modalIsVisible, toggleModalVisibility] = useModal();
   return (
     <AssetTitleWrapper>
@@ -162,7 +165,7 @@ const AssetHeader = ({ slugInfo }: { slugInfo: AssetInfo }) => {
           <StarOutlineIcon sx={{ fontSize: 18 }} />
         </WatchListWrapperIcon>
         <WatchListWrapperText onClick={toggleModalVisibility}>
-          Add to Watchlist
+          {t("ADD_TO_WATCHLIST")}
         </WatchListWrapperText>
       </WatchListWrapper>
       <UiModal

@@ -20,6 +20,12 @@
       }
     ]
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/__document.js"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "pages/__document.js",
+    "lib/context/i18n.js"
+  ],
   "exclude": ["node_modules"]
 }

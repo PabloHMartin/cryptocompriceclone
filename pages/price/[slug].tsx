@@ -9,8 +9,9 @@ import {
   fetchSlugPrices,
   fetchTokenInfo,
 } from "../../lib/queries/queries";
+import Link from "next/link";
 import styled from "@emotion/styled";
-import { Breadcrumbs, Link, Typography } from "@mui/material";
+import { Breadcrumbs, Typography } from "@mui/material";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import StarOutlineIcon from "@mui/icons-material/StarOutline";
 import Image from "next/image";
@@ -84,13 +85,7 @@ export default function Slug() {
   );
 
   const breadcrumbs = [
-    <Link
-      underline="hover"
-      key="2"
-      color="inherit"
-      href="/price"
-      onClick={handleClick}
-    >
+    <Link href="/price" passHref={true} key="2">
       <BreadcrumbStyle>{t("TOP_MOVERS")}</BreadcrumbStyle>
     </Link>,
     <Typography fontSize={"16px"} key="3" color="text.primary">
@@ -100,7 +95,6 @@ export default function Slug() {
 
   return (
     <>
-      <NavBar />
       {slugInfo === undefined ||
       slugPrices === undefined ||
       icons === undefined ? (
@@ -109,7 +103,6 @@ export default function Slug() {
         </LoadingScreenWrapper>
       ) : (
         <>
-          <GlobalMetrics />
           <MainWrapper>
             <BreadcrumbWrapper>
               <Breadcrumbs

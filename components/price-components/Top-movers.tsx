@@ -68,7 +68,7 @@ const SwiperOpts = ({ topMovers }: { topMovers: TopMover[] }) => {
 const CardOption = ({ mover }: { mover: TopMover }) => {
   const size = useWindowSize();
   return (
-    <Link href={`price/${mover.slug}`} passHref>
+    <Link href={`price/${mover.slug}`} passHref shallow={true}>
       <CardStyled
         sx={size.width < 1440 ? { minWidth: 150 } : { minWidth: 300 }}
         elevation={0}

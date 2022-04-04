@@ -72,9 +72,7 @@ export default function PricePage() {
 
   return (
     <>
-      <NavBar />
       {/* <Coinfilterbar /> */}
-
       {tableData === undefined ||
       topMovers?.length === undefined ||
       icons === undefined ? (
@@ -83,7 +81,6 @@ export default function PricePage() {
         </LoadingScreenWrapper>
       ) : (
         <>
-          <GlobalMetrics />
           <MainWrapper>
             <TopMovers topMovers={topMovers} />
             <AssetTable

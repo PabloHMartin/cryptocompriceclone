@@ -1,5 +1,4 @@
 import {
-  Link,
   Pagination,
   Paper,
   Table,
@@ -9,7 +8,7 @@ import {
   TableRow,
 } from "@mui/material";
 import { Dispatch, SetStateAction, useRef } from "react";
-
+import Link from "next/link";
 import { TableAssets } from "../../lib/models/Table-asset";
 import StarOutlineIcon from "@mui/icons-material/StarOutline";
 
@@ -43,6 +42,11 @@ export default function AssetTable(props: {
   const tableRef = useRef<HTMLDivElement>(document.createElement("div"));
   const size = useWindowSize();
   const [modalIsVisible, toggleModalVisibility] = useModal();
+
+  const cancelNavAndToogleModal = (evt: any) => {
+    evt.preventDefault();
+    toggleModalVisibility();
+  };
 
   const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
     props.setpageNumber(value);
@@ -105,22 +109,30 @@ export default function AssetTable(props: {
           </TableHead>
           <TableBody>
             {props.data.data.map((row, index) => (
-              <TableRow
+              <Link
+                href={"price/" + row.slug}
+                passHref={true}
+                shallow={true}
                 key={row.id}
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
-                <TableCellStyled>
-                  <StarOutlineIcon sx={{ fontSize: 18 }} />
-                </TableCellStyled>
-                {size.width > 1440 && (
-                  <TableCellStyled>{index + 1}</TableCellStyled>
-                )}
+                <TableRow
+                  hover={true}
+                  sx={{
+                    "&:last-child td, &:last-child th": { border: 0 },
+                    cursor: "pointer",
+                  }}
+                >
+                  <TableCellStyled>
+                    <StarOutlineIcon sx={{ fontSize: 18 }} />
+                  </TableCellStyled>
+                  {size.width > 1440 && (
+                    <TableCellStyled>{index + 1}</TableCellStyled>
+                  )}
 
-                <TableCellStyled component="th" scope="row">
-                  <Link
-                    style={{ textDecoration: "none", color: "#0B1426" }}
-                    href={"price/" + row.slug}
-                  >
+                  <TableCellStyled component="th" scope="row">
+                    {/* <div style={{ textDecoration: "none", color: "#0B1426" }}> */}
+                    {/* <Link href={"price/" + row.slug} passHref={true} shallow={t}> */}
+
                     <AssetNameStyled>
                       <AssetImageStyled>
                         {row.icon ? (
@@ -147,57 +159,59 @@ export default function AssetTable(props: {
                         </AssetDescStyledSymbol>
                       </AssetDescStyled>
                     </AssetNameStyled>
-                  </Link>
-                </TableCellStyled>
-                <TableCellStyled align="right">
-                  <Link
-                    href={"price/" + row.slug}
-                    style={{ textDecoration: "none", color: "#0B1426" }}
-                  >
-                    <CellPriceStyled>
-                      {" "}
-                      ${row.usd_price.toFixed(2)}{" "}
-                    </CellPriceStyled>
-                    {size.width < 1440 && (
+                    {/* </div> */}
+                  </TableCellStyled>
+
+                  <TableCellStyled align="right">
+                    <div
+                      // href={"price/" + row.slug}
+                      style={{ textDecoration: "none", color: "#0B1426" }}
+                    >
                       <CellPriceStyled>
                         {" "}
-                        {(row.usd_price_change_24h * 100).toFixed(2)}%
+                        ${row.usd_price.toFixed(2)}{" "}
                       </CellPriceStyled>
-                    )}
-                  </Link>
-                </TableCellStyled>
-                {size.width > 1440 && (
-                  <TableCellStyled>
-                    {(row.usd_price_change_24h * 100).toFixed(2)}%
+                      {size.width < 1440 && (
+                        <CellPriceStyled>
+                          {" "}
+                          {(row.usd_price_change_24h * 100).toFixed(2)}%
+                        </CellPriceStyled>
+                      )}
+                    </div>
                   </TableCellStyled>
-                )}
-                {size.width > 1440 && (
+                  {size.width > 1440 && (
+                    <TableCellStyled>
+                      {(row.usd_price_change_24h * 100).toFixed(2)}%
+                    </TableCellStyled>
+                  )}
+                  {size.width > 1440 && (
+                    <TableCellStyled>
+                      {(row.usd_volume_24h / 1000000000).toFixed(2)} B
+                    </TableCellStyled>
+                  )}
+                  {size.width > 1440 && (
+                    <TableCellStyled>
+                      ${(row.usd_marketcap / 1000000000).toFixed(2)} B
+                    </TableCellStyled>
+                  )}
+                  {size.width > 1440 && (
+                    <TableCellStyled>
+                      <MinichartWrapper>
+                        <MiniChart prices={row.prices} />
+                      </MinichartWrapper>
+                    </TableCellStyled>
+                  )}
                   <TableCellStyled>
-                    {(row.usd_volume_24h / 1000000000).toFixed(2)} B
+                    <ButtonStyled
+                      variant="contained"
+                      size="small"
+                      onClick={cancelNavAndToogleModal}
+                    >
+                      {t("TRADE")}
+                    </ButtonStyled>
                   </TableCellStyled>
-                )}
-                {size.width > 1440 && (
-                  <TableCellStyled>
-                    ${(row.usd_marketcap / 1000000000).toFixed(2)} B
-                  </TableCellStyled>
-                )}
-                {size.width > 1440 && (
-                  <TableCellStyled>
-                    <MinichartWrapper>
-                      <MiniChart prices={row.prices} />
-                    </MinichartWrapper>
-                  </TableCellStyled>
-                )}
-                <TableCellStyled>
-                  <ButtonStyled
-                    variant="contained"
-                    size="small"
-                    onClick={toggleModalVisibility}
-                  >
-                    {t("TRADE")}
-                  </ButtonStyled>
-                </TableCellStyled>
-              </TableRow>
+                </TableRow>
+              </Link>
             ))}
           </TableBody>
         </Table>

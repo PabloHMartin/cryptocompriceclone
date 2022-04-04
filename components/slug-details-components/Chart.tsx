@@ -2,7 +2,6 @@ import HighchartsReact from "highcharts-react-official";
 import Highcharts from "highcharts";
 import { useRef } from "react";
 import { SlugPrices } from "../../lib/models/Slug-prices";
-import { useWindowSize } from "../../lib/hooks/useWindowSize";
 
 export default function Chart(props: { data: SlugPrices }) {
   const chartComponentRef = useRef<HighchartsReact.RefObject>(null);

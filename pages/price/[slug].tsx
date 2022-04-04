@@ -1,7 +1,5 @@
 import { useRouter } from "next/router";
 import { useQuery } from "react-query";
-import GlobalMetrics from "../../components/shared/GlobalMetrics";
-import NavBar from "../../components/shared/Navbar";
 import ChartContainer from "../../components/slug-details-components/Chart-container";
 import {
   fetchIcons,
@@ -10,7 +8,6 @@ import {
   fetchTokenInfo,
 } from "../../lib/queries/queries";
 import Link from "next/link";
-import styled from "@emotion/styled";
 import { Breadcrumbs, Typography } from "@mui/material";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import StarOutlineIcon from "@mui/icons-material/StarOutline";
@@ -35,8 +32,6 @@ import { AssetInfo } from "../../lib/models/Slug-backend";
 import { useModal } from "../../lib/hooks/useModal";
 import { UiModal } from "../../components/shared/UiModal";
 import { Usei18N } from "../../lib/context/i18n";
-
-function handleClick(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {}
 
 export default function Slug() {
   const { t } = Usei18N();

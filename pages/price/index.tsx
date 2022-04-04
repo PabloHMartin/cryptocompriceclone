@@ -3,8 +3,6 @@ import { useQuery } from "react-query";
 import AssetTable from "../../components/price-components/Asset-table";
 import TopMovers from "../../components/price-components/Top-movers";
 import Footer from "../../components/shared/Footer";
-import GlobalMetrics from "../../components/shared/GlobalMetrics";
-import NavBar from "../../components/shared/Navbar";
 import { TableAssets } from "../../lib/models/Table-asset";
 import { TopMover } from "../../lib/models/Top-mover";
 import {
